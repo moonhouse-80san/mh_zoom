@@ -1,0 +1,57 @@
+<!--%import("popup.js")-->
+<!--%import("popup.css")-->
+<!--%import("../lang")-->
+{@Context::addMetaTag('viewport', 'width=device-width', FALSE);}
+<div class="x_modal-header">
+	<h1>{$component_info->title}</h1>
+	<a class="close_window" href="javascript:window.close()">&times;</a>
+</div>
+<div class="x_modal-body">
+	<form action="./" method="get" onSubmit="return false" id="fo" class="x_form-horizontal">
+		<input type="hidden" id="editor_sequence" value="{$editor_sequence}" />
+		<input type="hidden" id="module_srl" value="{$module_srl}" />
+		<input type="hidden" id="mid" value="{$mid}" />
+		<input type="hidden" id="src" value="" />
+
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->mh_zoom_upload}</label>
+			<div class="x_controls">
+				<input type="file" id="upload_file" accept="image/*" />
+				<span id="upload_status" class="mh_zoom_upload_status"></span>
+				<div class="mh_zoom_preview_box">
+					<img id="preview_img" src="" alt="" style="display:none" />
+				</div>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="width" class="x_control-label">{$lang->mh_zoom_width}</label>
+			<div class="x_controls">
+				<input type="number" id="width" value="300" style="width:80px" /> px
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="position" class="x_control-label">{$lang->mh_zoom_position}</label>
+			<div class="x_controls">
+				<select id="position">
+					<option value="inside">{$lang->mh_zoom_position_inside}</option>
+					<option value="right">{$lang->mh_zoom_position_right}</option>
+					<option value="left">{$lang->mh_zoom_position_left}</option>
+					<option value="top">{$lang->mh_zoom_position_top}</option>
+					<option value="bottom">{$lang->mh_zoom_position_bottom}</option>
+				</select>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="title" class="x_control-label">{$lang->mh_zoom_title}</label>
+			<div class="x_controls">
+				<input type="text" id="title" value="" style="width:100%" />
+			</div>
+		</div>
+		<div class="x_clearfix btnArea">
+			<div class="x_pull-right">
+				<button type="button" id="btn_insert" class="x_btn x_btn-primary">{$lang->cmd_insert}</button>
+				<a class="x_btn" href="{getUrl('','module','editor','act','dispEditorComponentInfo','component_name',$component_info->component_name)}" target="_blank" onclick="window.open(this.href,'ComponentInfo','width=10,height=10');return false;">{$lang->about_component}</a>
+			</div>
+		</div>
+	</form>
+</div>

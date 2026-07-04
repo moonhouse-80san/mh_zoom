@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component version="1.0">
+	<title xml:lang="ko">MH Zoom</title>
+	<description xml:lang="ko">이미지에 마우스를 올리면 옆(또는 지정한 위치)에 확대된 모습을 보여주는 에디터 컴포넌트입니다. Cloud Zoom 라이브러리를 사용합니다.</description>
+	<version>1.0</version>
+	<date>2026-07-03</date>
+
+	<author email_address="80san@moonhouse.co.kr" link="https://moonhouse.co.kr/">
+		<name xml:lang="ko">팔공산</name>
+	</author>
+</component>
