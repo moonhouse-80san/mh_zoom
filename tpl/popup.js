@@ -14,6 +14,7 @@
 		$form.find('#width').val(node.getAttribute('width') || 300);
 		$form.find('#position').val(node.getAttribute('position') || 'inside');
 		$form.find('#zoom_scale').val(node.getAttribute('zoom_scale') || 100);
+		$form.find('#show_scale_control').prop('checked', node.getAttribute('show_scale_control') !== 'N');
 		$form.find('#title').val(node.getAttribute('title') || '');
 		$form.find('#bottom_text').val(node.getAttribute('bottom_text') || '');
 
@@ -80,6 +81,7 @@
 			width: parseInt($form.find('#width').val(), 10) || 300,
 			position: $form.find('#position').val(),
 			zoom_scale: parseInt($form.find('#zoom_scale').val(), 10) || 100,
+			show_scale_control: $form.find('#show_scale_control').is(':checked') ? 'Y' : 'N',
 			title: $form.find('#title').val(),
 			bottom_text: $form.find('#bottom_text').val()
 		};

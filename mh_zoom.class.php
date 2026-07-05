@@ -61,6 +61,9 @@ class mh_zoom extends EditorHandler
 			$zoom_scale = 100;
 		}
 
+		// 값이 없으면(과거에 삽입된 이미지 포함) 기본적으로 노출
+		$show_scale_control = ($xml_obj->attrs->show_scale_control ?? 'Y') !== 'N';
+
 		// 상대경로 이미지 주소를 절대경로로 변환 (코어 image_link 컴포넌트와 동일한 방식)
 		$normalized_src = str_replace(['&', '"'], ['&amp;', '&quot;'], $src);
 		$normalized_src = str_replace('&amp;amp;', '&amp;', $normalized_src);
@@ -83,6 +86,8 @@ class mh_zoom extends EditorHandler
 		// 원본 크기로 나오는 문제를 막기 위해, 인라인 style에도 !important로 강제 지정
 		$zoom_info->size_style = ' style="width:' . $width . 'px !important;"';
 		$zoom_info->position = $position;
+		$zoom_info->zoom_scale_percent = $zoom_scale;
+		$zoom_info->scale_control_id = $zoom_info->id . 'Scale';
 		// cloud-zoom.js에 넘길 확대 배율 (1 = 원본 100%, 1.5 = 150%, 0.5 = 50%)
 		$zoom_info->zoom_scale = $zoom_scale / 100;
 		$zoom_info->alt_attr = htmlspecialchars($title, ENT_QUOTES);
@@ -91,6 +96,14 @@ class mh_zoom extends EditorHandler
 		// 이미지 하단에 항상 보이는 별도 문구 (마우스 오버용 title과는 별개)
 		$zoom_info->bottom_html = $bottom_text !== ''
 			? '<span class="mh_zoom_bottom_text" style="width:' . $width . 'px !important;">' . htmlspecialchars($bottom_text, ENT_QUOTES) . '</span>'
+			: '';
+		// 이미지 밖 우측 상단에 책갈피 모양으로 붙여서 보여줄 확대 배율 조절 UI (옵션으로 켜고 끌 수 있음)
+		// 라벨 문구 없이 입력창 + % 만 단순하게 노출
+		$zoom_info->scale_control_html = $show_scale_control
+			? '<span class="mh_zoom_scale_control">'
+				. '<span class="mh_zoom_scale_icon" aria-hidden="true">🔍</span>'
+				. '<input type="number" id="' . $zoom_info->scale_control_id . '" class="mh_zoom_scale_input" value="' . $zoom_info->zoom_scale_percent . '" min="10" max="500" step="10" data-target="' . $zoom_info->id . '" aria-label="확대 배율" />'
+				. '<span class="mh_zoom_scale_unit">%</span></span>'
 			: '';
 
 		Context::set('zoom_info', $zoom_info);

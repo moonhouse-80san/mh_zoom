@@ -4,7 +4,15 @@
 	display: inline-block;
 	max-width: 100%;
 	vertical-align: top;
-	margin: 0 8px 12px 0;
+	margin: 10px 8px 12px 0;
+}
+
+.mh_zoom_img_box {
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+	line-height: 0;
+	border:1px solid #ccc;
 }
 
 .mh_zoom_row {
@@ -61,3 +69,42 @@
 	padding: 3px;
 	border: 1px solid #000;
 }
+
+.mh_zoom_scale_control {
+	position: absolute;
+	top: -24px;
+	right: 0px;
+	width: 85px;
+	height: 24px;
+	z-index: 20;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	padding: 0 8px;
+	background-color: #ccc;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+}
+
+.mh_zoom_scale_input {
+	box-sizing: border-box;
+	width: 40px;
+	padding: 0 2px;
+	border: none;
+	border-radius: 2px;
+	font-size: 11px;
+	text-align: center;
+	background-color: #fff;
+	color: #444;
+}
+
+.mh_zoom_scale_unit {
+	font-size: 11px;
+	color: #000;
+}
+
+.mh_zoom_scale_icon {
+	margin-right:5px;
+)

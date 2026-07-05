@@ -24,6 +24,16 @@
 	color: #999;
 }
 
+.mh_zoom_checkbox_label {
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.mh_zoom_checkbox_label input[type="checkbox"] {
+	vertical-align: middle;
+	margin-right: 4px;
+}
+
 /* for mobile view */
 div.xe_mobile {
 	display: none !important;
