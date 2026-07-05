@@ -7,5 +7,7 @@ $lang->mh_zoom_position_right = '오른쪽';
 $lang->mh_zoom_position_left = '왼쪽';
 $lang->mh_zoom_position_top = '위';
 $lang->mh_zoom_position_bottom = '아래';
+$lang->mh_zoom_scale = '확대 배율';
+$lang->mh_zoom_scale_help = '100 = 원본 크기 그대로, 50 = 원본의 절반 크기로 축소, 150 = 원본의 1.5배로 확대 (10~500 사이)';
 $lang->mh_zoom_title = '캡션(제목) 텍스트';
 $lang->mh_zoom_bottom_text = '이미지 하단 문구';

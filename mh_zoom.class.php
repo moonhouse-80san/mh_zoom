@@ -55,6 +55,12 @@ class mh_zoom extends EditorHandler
 		$title = trim($xml_obj->attrs->title ?? '');
 		$bottom_text = trim($xml_obj->attrs->bottom_text ?? '');
 
+		$zoom_scale = (int)($xml_obj->attrs->zoom_scale ?? 100);
+		if ($zoom_scale < 10 || $zoom_scale > 500)
+		{
+			$zoom_scale = 100;
+		}
+
 		// 상대경로 이미지 주소를 절대경로로 변환 (코어 image_link 컴포넌트와 동일한 방식)
 		$normalized_src = str_replace(['&', '"'], ['&amp;', '&quot;'], $src);
 		$normalized_src = str_replace('&amp;amp;', '&amp;', $normalized_src);
@@ -77,6 +83,8 @@ class mh_zoom extends EditorHandler
 		// 원본 크기로 나오는 문제를 막기 위해, 인라인 style에도 !important로 강제 지정
 		$zoom_info->size_style = ' style="width:' . $width . 'px !important;"';
 		$zoom_info->position = $position;
+		// cloud-zoom.js에 넘길 확대 배율 (1 = 원본 100%, 1.5 = 150%, 0.5 = 50%)
+		$zoom_info->zoom_scale = $zoom_scale / 100;
 		$zoom_info->alt_attr = htmlspecialchars($title, ENT_QUOTES);
 		$zoom_info->title_attr = $title !== '' ? ' title="' . htmlspecialchars($title, ENT_QUOTES) . '"' : '';
 		$zoom_info->show_title = $title !== '' ? 'true' : 'false';

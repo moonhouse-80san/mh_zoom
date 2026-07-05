@@ -13,6 +13,7 @@
 		$form.find('#src').val(src);
 		$form.find('#width').val(node.getAttribute('width') || 300);
 		$form.find('#position').val(node.getAttribute('position') || 'inside');
+		$form.find('#zoom_scale').val(node.getAttribute('zoom_scale') || 100);
 		$form.find('#title').val(node.getAttribute('title') || '');
 		$form.find('#bottom_text').val(node.getAttribute('bottom_text') || '');
 
@@ -78,6 +79,7 @@
 			src: src,
 			width: parseInt($form.find('#width').val(), 10) || 300,
 			position: $form.find('#position').val(),
+			zoom_scale: parseInt($form.find('#zoom_scale').val(), 10) || 100,
 			title: $form.find('#title').val(),
 			bottom_text: $form.find('#bottom_text').val()
 		};

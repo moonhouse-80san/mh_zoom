@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component version="1.0">
+<component version="1.1">
 	<title xml:lang="ko">문하우스 Zoom (이미지 확대)</title>
-	<version>1.0</version>
-	<date>2026-07-03</date>
+	<version>1.1</version>
+	<date>2026-07-05</date>
 	<author email_address="80san@moonhouse.co.kr" link="https://moonhouse.co.kr/">
 		<name xml:lang="ko">팔공산</name>
 		<description xml:lang="ko">이미지에 마우스를 올리면 옆(또는 지정한 위치)에 확대된 모습을 보여주는 에디터 컴포넌트입니다. Cloud Zoom 라이브러리를 사용합니다.</description>

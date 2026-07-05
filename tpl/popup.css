@@ -18,6 +18,12 @@
 	border: 1px solid #ddd;
 }
 
+.mh_zoom_help_text {
+	margin-top: 4px;
+	font-size: 12px;
+	color: #999;
+}
+
 /* for mobile view */
 div.xe_mobile {
 	display: none !important;
