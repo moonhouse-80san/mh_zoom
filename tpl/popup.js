@@ -14,6 +14,7 @@
 		$form.find('#width').val(node.getAttribute('width') || 300);
 		$form.find('#position').val(node.getAttribute('position') || 'inside');
 		$form.find('#title').val(node.getAttribute('title') || '');
+		$form.find('#bottom_text').val(node.getAttribute('bottom_text') || '');
 
 		if (src) {
 			showPreview(src);
@@ -77,7 +78,8 @@
 			src: src,
 			width: parseInt($form.find('#width').val(), 10) || 300,
 			position: $form.find('#position').val(),
-			title: $form.find('#title').val()
+			title: $form.find('#title').val(),
+			bottom_text: $form.find('#bottom_text').val()
 		};
 
 		var $img = $('<img />').attr(attrs);

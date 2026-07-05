@@ -8,3 +8,4 @@ $lang->mh_zoom_position_left = '왼쪽';
 $lang->mh_zoom_position_top = '위';
 $lang->mh_zoom_position_bottom = '아래';
 $lang->mh_zoom_title = '캡션(제목) 텍스트';
+$lang->mh_zoom_bottom_text = '이미지 하단 문구';

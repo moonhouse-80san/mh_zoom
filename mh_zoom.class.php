@@ -1,7 +1,7 @@
 <?php
 /**
  * @class  mh_zoom
- * @author 팔공산 (mbg1346@naver.com)
+ * @author 팔공산 (80san@moonhouse.co.kr)
  * @brief  Cloud Zoom 라이브러리를 이용해 이미지를 확대해서 보여주는 에디터 컴포넌트
  */
 class mh_zoom extends EditorHandler
@@ -53,6 +53,7 @@ class mh_zoom extends EditorHandler
 		}
 
 		$title = trim($xml_obj->attrs->title ?? '');
+		$bottom_text = trim($xml_obj->attrs->bottom_text ?? '');
 
 		// 상대경로 이미지 주소를 절대경로로 변환 (코어 image_link 컴포넌트와 동일한 방식)
 		$normalized_src = str_replace(['&', '"'], ['&amp;', '&quot;'], $src);
@@ -79,6 +80,10 @@ class mh_zoom extends EditorHandler
 		$zoom_info->alt_attr = htmlspecialchars($title, ENT_QUOTES);
 		$zoom_info->title_attr = $title !== '' ? ' title="' . htmlspecialchars($title, ENT_QUOTES) . '"' : '';
 		$zoom_info->show_title = $title !== '' ? 'true' : 'false';
+		// 이미지 하단에 항상 보이는 별도 문구 (마우스 오버용 title과는 별개)
+		$zoom_info->bottom_html = $bottom_text !== ''
+			? '<span class="mh_zoom_bottom_text" style="width:' . $width . 'px !important;">' . htmlspecialchars($bottom_text, ENT_QUOTES) . '</span>'
+			: '';
 
 		Context::set('zoom_info', $zoom_info);
 

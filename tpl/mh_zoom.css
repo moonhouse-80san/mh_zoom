@@ -3,6 +3,32 @@
 .mh_zoom_wrap {
 	display: inline-block;
 	max-width: 100%;
+	vertical-align: top;
+	margin: 0 8px 12px 0;
+}
+
+.mh_zoom_row {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: flex-start;
+	gap: 8px;
+	max-width: 100%;
+	margin-bottom: 12px;
+}
+
+.mh_zoom_row .mh_zoom_wrap {
+	flex: 1 1 0;
+	min-width: 0;
+	margin: 0;
+}
+
+.mh_zoom_bottom_text {
+	box-sizing: border-box;
+	margin-top: 4px;
+	font-size: 16px;
+	color: #666;
+	display: block;
+	text-align: center;
 }
 
 .cloud-zoom-lens {
@@ -13,7 +39,6 @@
 }
 
 .cloud-zoom-title {
-	font-family: Arial, Helvetica, sans-serif;
 	position: absolute !important;
 	background-color: #000;
 	color: #fff;
