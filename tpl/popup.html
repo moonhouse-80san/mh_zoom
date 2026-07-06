@@ -24,9 +24,12 @@
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label for="width" class="x_control-label">{$lang->mh_zoom_width}</label>
+			<label class="x_control-label">{$lang->mh_zoom_size}</label>
 			<div class="x_controls">
-				<input type="number" id="width" value="300" style="width:80px" /> px
+				<input type="number" id="width" value="300" style="width:80px" /> px (<span class="mh_zoom_size_label">{$lang->mh_zoom_width}</span>)
+				&nbsp;*&nbsp;
+				<input type="number" id="height" value="" style="width:80px" /> px (<span class="mh_zoom_size_label">{$lang->mh_zoom_height}</span>)
+				<div class="mh_zoom_help_text">{$lang->mh_zoom_size_help}</div>
 			</div>
 		</div>
 		<div class="x_control-group">

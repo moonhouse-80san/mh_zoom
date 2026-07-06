@@ -1,6 +1,9 @@
 <?php
 $lang->mh_zoom_upload = '이미지 업로드';
-$lang->mh_zoom_width = '썸네일 너비';
+$lang->mh_zoom_size = '썸네일 크기';
+$lang->mh_zoom_size_help = '가로 또는 세로 중 하나를 입력하면 원본 이미지 비율에 맞춰 나머지 값이 자동으로 계산됩니다.';
+$lang->mh_zoom_width = '가로';
+$lang->mh_zoom_height = '세로';
 $lang->mh_zoom_position = '확대 이미지가 뜰 위치';
 $lang->mh_zoom_position_inside = '이미지 안쪽 (돋보기형)';
 $lang->mh_zoom_position_right = '오른쪽';

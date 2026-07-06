@@ -46,6 +46,11 @@ class mh_zoom extends EditorHandler
 		$width = (int)($xml_obj->attrs->width ?? 0);
 		$width = $width > 0 ? $width : 300;
 
+		// 세로 값은 팝업에서 가로 비율에 맞춰 자동 계산되어 저장되지만,
+		// 과거에 삽입된 이미지 등 값이 없는 경우도 있으므로 0이면 자동(auto) 처리
+		$height = (int)($xml_obj->attrs->height ?? 0);
+		$height = $height > 0 ? $height : 0;
+
 		$position = $xml_obj->attrs->position ?? 'inside';
 		if (!in_array($position, ['left', 'right', 'top', 'bottom', 'inside'], true))
 		{
@@ -82,9 +87,13 @@ class mh_zoom extends EditorHandler
 		$zoom_info->src = $normalized_src;
 		$zoom_info->zoom_src = $normalized_src;
 		$zoom_info->width = $width;
+		// height가 0(자동)이면 height 속성/스타일 자체를 넣지 않아 브라우저가 비율대로 계산하게 둠
+		$zoom_info->height_attr = $height > 0 ? ' height="' . $height . '"' : '';
 		// 게시판 스킨 CSS(예: .xe_content img{width:auto!important})가 width 속성을 덮어써서
 		// 원본 크기로 나오는 문제를 막기 위해, 인라인 style에도 !important로 강제 지정
-		$zoom_info->size_style = ' style="width:' . $width . 'px !important;"';
+		$zoom_info->size_style = ' style="width:' . $width . 'px !important;'
+			. ($height > 0 ? ' height:' . $height . 'px !important;' : '')
+			. '"';
 		$zoom_info->position = $position;
 		$zoom_info->zoom_scale_percent = $zoom_scale;
 		$zoom_info->scale_control_id = $zoom_info->id . 'Scale';
