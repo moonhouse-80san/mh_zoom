@@ -1,79 +1,107 @@
-<!--%import("popup.js")-->
-<!--%import("popup.css")-->
-<!--%import("../lang")-->
-{@Context::addMetaTag('viewport', 'width=device-width', FALSE);}
+<load target="./popup.js" />
+<load target="./popup.css" />
+<load target="../lang" />
+
 <div class="x_modal-header">
-	<h1>{$component_info->title}</h1>
+	<h1>{$component_info->title} ver. {$component_info->version}</h1>
 	<a class="close_window" href="javascript:window.close()">&times;</a>
 </div>
-<div class="x_modal-body">
-	<form action="./" method="get" onSubmit="return false" id="fo" class="x_form-horizontal">
-		<input type="hidden" id="editor_sequence" value="{$editor_sequence}" />
-		<input type="hidden" id="module_srl" value="{$module_srl}" />
-		<input type="hidden" id="mid" value="{$mid}" />
-		<input type="hidden" id="src" value="" />
 
-		<div class="x_control-group">
-			<label class="x_control-label">{$lang->mh_zoom_upload}</label>
-			<div class="x_controls">
-				<input type="file" id="upload_file" accept="image/*" />
-				<span id="upload_status" class="mh_zoom_upload_status"></span>
-				<div class="mh_zoom_preview_box">
-					<img id="preview_img" src="" alt="" style="display:none" />
-				</div>
-			</div>
+<form action="./" method="get" onSubmit="return false" id="fo">
+	<input type="hidden" id="editor_sequence" value="{$editor_sequence}" />
+	<input type="hidden" id="module_srl" value="{$module_srl}" />
+	<input type="hidden" id="mid" value="{$mid}" />
+	<input type="hidden" id="src" value="" />
+
+	<div id="popBody">
+		<table cellspacing="0" class="adminTable">
+			<col width="110" />
+			<col />
+
+			<!-- 업로드 -->
+			<tr>
+				<th scope="row">{$lang->mh_zoom_upload}</th>
+				<td>
+					<div class="row-inline">
+						<input type="file" id="upload_file" accept="image/*" />
+						<span id="upload_status" class="mh_zoom_upload_status"></span>
+					</div>
+					<div class="mh_zoom_preview_box mt6">
+						<img id="preview_img" src="" alt="" style="display:none" />
+					</div>
+				</td>
+			</tr>
+
+			<!-- 크기 -->
+			<tr>
+				<th scope="row">{$lang->mh_zoom_size}</th>
+				<td>
+					<div class="row-inline">
+						<input type="number" id="width" class="inputTypeText" value="300" style="width:80px" />
+						<span class="mh_zoom_size_label">px ({$lang->mh_zoom_width})</span>
+						<span class="opt-sep"></span>*<span class="opt-sep"></span>
+						<input type="number" id="height" class="inputTypeText" value="" style="width:80px" />
+						<span class="mh_zoom_size_label">px ({$lang->mh_zoom_height})</span>
+					</div>
+					<div class="mh_zoom_help_text">{$lang->mh_zoom_size_help}</div>
+				</td>
+			</tr>
+
+			<!-- 위치 -->
+			<tr>
+				<th scope="row">{$lang->mh_zoom_position}</th>
+				<td>
+					<select id="position" class="inputTypeText">
+						<option value="inside">{$lang->mh_zoom_position_inside}</option>
+						<option value="right">{$lang->mh_zoom_position_right}</option>
+						<option value="left">{$lang->mh_zoom_position_left}</option>
+						<option value="top">{$lang->mh_zoom_position_top}</option>
+						<option value="bottom">{$lang->mh_zoom_position_bottom}</option>
+					</select>
+				</td>
+			</tr>
+
+			<!-- 확대율 -->
+			<tr>
+				<th scope="row">{$lang->mh_zoom_scale}</th>
+				<td>
+					<div class="row-inline">
+						<input type="number" id="zoom_scale" class="inputTypeText" value="100" min="10" max="500" style="width:80px" /> %
+					</div>
+					<div class="mh_zoom_help_text">{$lang->mh_zoom_scale_help}</div>
+				</td>
+			</tr>
+
+			<!-- 확대율 컨트롤 표시 -->
+			<tr>
+				<th scope="row">{$lang->mh_zoom_show_scale_control}</th>
+				<td>
+					<label class="mh_zoom_checkbox_label"><input type="checkbox" id="show_scale_control" checked /> {$lang->mh_zoom_show_scale_control_desc}</label>
+				</td>
+			</tr>
+
+			<!-- 제목 -->
+			<tr>
+				<th scope="row">{$lang->mh_zoom_title}</th>
+				<td>
+					<input type="text" id="title" class="inputTypeText" value="" style="width:100%" />
+				</td>
+			</tr>
+
+			<!-- 하단 텍스트 -->
+			<tr>
+				<th scope="row">{$lang->mh_zoom_bottom_text}</th>
+				<td>
+					<input type="text" id="bottom_text" class="inputTypeText" value="" style="width:100%" />
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-right">
+			<button type="button" id="btn_insert" class="x_btn x_btn-primary">{$lang->cmd_insert}</button>
+			<a href="#" onclick="window.close(); return false;"><button type="button" class="x_btn">{$lang->cmd_close}</button></a>
 		</div>
-		<div class="x_control-group">
-			<label class="x_control-label">{$lang->mh_zoom_size}</label>
-			<div class="x_controls">
-				<input type="number" id="width" value="300" style="width:80px" /> px (<span class="mh_zoom_size_label">{$lang->mh_zoom_width}</span>)
-				&nbsp;*&nbsp;
-				<input type="number" id="height" value="" style="width:80px" /> px (<span class="mh_zoom_size_label">{$lang->mh_zoom_height}</span>)
-				<div class="mh_zoom_help_text">{$lang->mh_zoom_size_help}</div>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label for="position" class="x_control-label">{$lang->mh_zoom_position}</label>
-			<div class="x_controls">
-				<select id="position">
-					<option value="inside">{$lang->mh_zoom_position_inside}</option>
-					<option value="right">{$lang->mh_zoom_position_right}</option>
-					<option value="left">{$lang->mh_zoom_position_left}</option>
-					<option value="top">{$lang->mh_zoom_position_top}</option>
-					<option value="bottom">{$lang->mh_zoom_position_bottom}</option>
-				</select>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label for="zoom_scale" class="x_control-label">{$lang->mh_zoom_scale}</label>
-			<div class="x_controls">
-				<input type="number" id="zoom_scale" value="100" min="10" max="500" style="width:80px" /> %
-				<div class="mh_zoom_help_text">{$lang->mh_zoom_scale_help}</div>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label class="x_control-label">{$lang->mh_zoom_show_scale_control}</label>
-			<div class="x_controls">
-				<label class="mh_zoom_checkbox_label"><input type="checkbox" id="show_scale_control" checked /> {$lang->mh_zoom_show_scale_control_desc}</label>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label for="title" class="x_control-label">{$lang->mh_zoom_title}</label>
-			<div class="x_controls">
-				<input type="text" id="title" value="" style="width:100%" />
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label for="bottom_text" class="x_control-label">{$lang->mh_zoom_bottom_text}</label>
-			<div class="x_controls">
-				<input type="text" id="bottom_text" value="" style="width:100%" />
-			</div>
-		</div>
-		<div class="x_clearfix btnArea">
-			<div class="x_pull-right">
-				<button type="button" id="btn_insert" class="x_btn x_btn-primary">{$lang->cmd_insert}</button>
-				<a class="x_btn" href="{getUrl('','module','editor','act','dispEditorComponentInfo','component_name',$component_info->component_name)}" target="_blank" onclick="window.open(this.href,'ComponentInfo','width=10,height=10');return false;">{$lang->about_component}</a>
-			</div>
-		</div>
-	</form>
-</div>
+	</div>
+</form>
